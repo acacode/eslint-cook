@@ -49,5 +49,13 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
+  },
+  "bugs": {
+    "url": "https://github.com/acacode/eslint-plugin-dynamic/issues"
+  },
+  "homepage": "https://github.com/acacode/eslint-plugin-dynamic",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/acacode/eslint-plugin-dynamic"
   }
 }
