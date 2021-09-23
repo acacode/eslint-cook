@@ -1,0 +1,22 @@
+{
+  "compileOnSave": false,
+  "include": ["src"],
+  "compilerOptions": {
+    "pretty": true,
+    "outDir": "dist",
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "react",
+    "strict": false,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "typeRoots": ["./types"],
+    "types": ["node"],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "plugins": []
+  }
+}
