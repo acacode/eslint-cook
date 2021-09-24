@@ -36,7 +36,6 @@ export type ModuleConfig = {
   name: ModuleName;
   docs: string;
   defs: string[];
-  deps: string[];
   priority: number;
   config: EslintConfig;
   conflicts: ModuleName[];
