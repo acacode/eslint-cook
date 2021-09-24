@@ -13,8 +13,16 @@ const generate = async () => {
     moduleConfigs: MODULE_CONFIGS_VALUES,
   }
 
+  const possibleModuleNames = MODULE_CONFIGS_VALUES.reduce<{ name: ModuleName, def: string }[]>(
+    (acc, moduleConfig) => {
+      return [
+        ...acc,
+        ..._.uniq([moduleConfig.name, ...moduleConfig.defs]).map(def => ({ name: moduleConfig.name, def }))
+      ]
+    }, [])
+
   const readme = await eta.renderFile(path.resolve(__dirname, "./template.md"), {
-    possibleModuleNames: POSSIBLE_MODULE_VALUES,
+    possibleModuleNames: possibleModuleNames,
     eslintConfigs: _.map(MODULE_CONFIGS, moduleConfig => ({
       ...moduleConfig,
       config: mergeEslintConfigs(generatorConfig, { extends: [], plugins: [] }, moduleConfig.config),

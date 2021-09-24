@@ -16,7 +16,7 @@ Add this plugin to your `.eslintrc` file
 ```
 
 Construction `typescript+react+effector+import+prettier+next` is dynamic.  
-Possible import modules <%~ it.possibleModuleNames.map(moduleName => `\`${moduleName}\``).join(', ') %>  
+Possible import modules <%~ it.possibleModuleNames.map(moduleName => `[${moduleName.def}](https://github.com/acacode/eslint-plugin-dynamic#${moduleName.name})`).join(', ') %>  
 
 Examples:  
 ```json

@@ -16,7 +16,7 @@ Add this plugin to your `.eslintrc` file
 ```
 
 Construction `typescript+react+effector+import+prettier+next` is dynamic.  
-Possible import modules `typescript`, `ts`, `prettier`, `react`, `reactjs`, `import`, `imports`, `effector`, `effectorjs`, `babel`, `babeljs`, `a11y`, `next`, `nextjs`, `styled-components`, `sc`, `unicorn`  
+Possible import modules [typescript](https://github.com/acacode/eslint-plugin-dynamic#typescript), [ts](https://github.com/acacode/eslint-plugin-dynamic#typescript), [prettier](https://github.com/acacode/eslint-plugin-dynamic#prettier), [react](https://github.com/acacode/eslint-plugin-dynamic#react), [reactjs](https://github.com/acacode/eslint-plugin-dynamic#react), [import](https://github.com/acacode/eslint-plugin-dynamic#import), [imports](https://github.com/acacode/eslint-plugin-dynamic#import), [effector](https://github.com/acacode/eslint-plugin-dynamic#effector), [effectorjs](https://github.com/acacode/eslint-plugin-dynamic#effector), [babel](https://github.com/acacode/eslint-plugin-dynamic#babel), [babeljs](https://github.com/acacode/eslint-plugin-dynamic#babel), [a11y](https://github.com/acacode/eslint-plugin-dynamic#a11y), [next](https://github.com/acacode/eslint-plugin-dynamic#next), [nextjs](https://github.com/acacode/eslint-plugin-dynamic#next), [styled-components](https://github.com/acacode/eslint-plugin-dynamic#styled-components), [sc](https://github.com/acacode/eslint-plugin-dynamic#styled-components), [unicorn](https://github.com/acacode/eslint-plugin-dynamic#unicorn)  
 
 Examples:  
 ```json
