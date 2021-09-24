@@ -3,6 +3,20 @@ import { MODULE_CONFIGS_VALUES, MODULE_NAMES_DIVIDER, POSSIBLE_MODULE_VALUES } f
 import {EslintConfig, GeneratorConfig, ModuleName} from "./types";
 import {BASE_CONFIG} from "./eslint/_base_";
 import * as _ from "lodash";
+import { spawnSync } from "child_process";
+import * as isWindows from "is-windows";
+
+const installPackage = (name) => {
+  const win = isWindows();
+  const isYarn = !!(process.env.npm_execpath && `${process.env.npm_execpath}`.endsWith('yarn.js'))
+  const commandPrefix = win ? '.cmd' : ''
+  let [command, args]: [command: string, args: string[]] =
+    isYarn ?
+      [`yarn${commandPrefix}`, ['add', '--no-save', name]] :
+      [`npm${commandPrefix}`, ['i', '--no-save', name]]
+
+  spawnSync(command, args, { cwd: process.cwd() });
+}
 
 const configPicker = new Proxy({} as Record<string, EslintConfig>, {
   get(target, path) {
@@ -19,6 +33,8 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
             `\nPossible import modules: ${POSSIBLE_MODULE_VALUES.map(m => `"${m}"`).join(', ')}`
           )
         }
+
+        _.each(moduleConfig.deps, installPackage);
 
         return moduleConfig;
       })
@@ -56,3 +72,5 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
 
 export const configs = configPicker;
 export const rules = {};
+
+console.info(configs['react']);
