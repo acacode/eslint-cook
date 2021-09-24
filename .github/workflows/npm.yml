@@ -17,15 +17,16 @@ jobs:
         with:
           path: '**/node_modules'
           key: node-14-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Install deps
+      - name: install deps
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
-      - name: set npm config
-        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN && npm config set //npm.pkg.github.com/:_authToken $GITHUB_TOKEN
+      - name: build
+        run: yarn build
+      - name: publish
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          npm publish --ignore-scripts
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: publish packages
-        run: npm publish
-        env:
           PRINT_ERRORS: false
