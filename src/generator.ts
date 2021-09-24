@@ -1,21 +1,26 @@
 import { mergeEslintConfigs} from "./utils";
 import { MODULE_CONFIGS_VALUES, MODULE_NAMES_DIVIDER, POSSIBLE_MODULE_VALUES } from "./constants";
-import {EslintConfig, GeneratorConfig, ModuleName} from "./types";
+import {EslintConfig, GeneratorConfig, ModuleConfig, ModuleName} from "./types";
 import {BASE_CONFIG} from "./eslint/_base_";
 import * as _ from "lodash";
 import { spawnSync } from "child_process";
 import * as isWindows from "is-windows";
+import installPeerDeps from "install-peerdeps/lib/install-peerdeps"
 
-const installPackage = (name) => {
-  const win = isWindows();
-  const isYarn = !!(process.env.npm_execpath && `${process.env.npm_execpath}`.endsWith('yarn.js'))
-  const commandPrefix = win ? '.cmd' : ''
-  let [command, args]: [command: string, args: string[]] =
-    isYarn ?
-      [`yarn${commandPrefix}`, ['add', '--no-save', name]] :
-      [`npm${commandPrefix}`, ['i', '--no-save', name]]
-
-  spawnSync(command, args, { cwd: process.cwd() });
+const installPackage = ({ name, version }: ModuleConfig["deps"][0]) => {
+  installPeerDeps({
+    packageName: name,
+    version: version,
+  })
+  // const win = isWindows();
+  // const isYarn = !!(process.env.npm_execpath && `${process.env.npm_execpath}`.endsWith('yarn.js'))
+  // const commandPrefix = win ? '.cmd' : ''
+  // let [command, args]: [command: string, args: string[]] =
+  //   isYarn ?
+  //     [`yarn${commandPrefix}`, ['add', '--no-save', name]] :
+  //     [`npm${commandPrefix}`, ['i', '--no-save', name]]
+  //
+  // spawnSync(command, args, { cwd: process.cwd() });
 }
 
 const configPicker = new Proxy({} as Record<string, EslintConfig>, {

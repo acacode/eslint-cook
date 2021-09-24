@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "cosmiconfig": "^7.0.1",
+    "install-peerdeps": "^3.0.3",
     "is-windows": "^1.0.2",
     "lodash": "^4.17.21"
   },
