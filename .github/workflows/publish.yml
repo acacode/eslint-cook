@@ -1,12 +1,6 @@
 name: publish
-env:
-  CI: true
 on:
   push:
-    branches: [ main ]
-    paths:
-      - 'package.json'
-  pull_request:
     branches: [ main ]
 jobs:
   publish-npm:
@@ -16,31 +10,70 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-          registry-url: 'https://npm.pkg.github.com'
-          scope: "@acacode"
+          registry-url: 'https://registry.npmjs.org'
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: node-14-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: install deps
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
+      - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: build
-        run: yarn build
-      - name: publish
-        run: |
-          node gpr-hack.js
-          yarn can-publish && npm publish --ignore-scripts
+      - name: Update Publish Config
+        run: sed -i 's^registry-url^registry.npmjs.org^' package.json
+      - name: Publish to NPM
+        run: npm publish --access public
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: package-version
-        run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
-      - name: package-version-to-git-tag
-        uses: pkgdeps/git-tag-action@v2
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  publish-gpr:
+    runs-on: ubuntu-latest
+    steps:
+      # Publish to GitHub Package Registry
+      - name: Checkout Repo
+        uses: actions/checkout@main
+
+      - name: Store lowercase actor name
+        run: |
+          echo 'actor_name<<EOF' >> $GITHUB_ENV
+          echo ${{ github.actor }} | tr "A-Z" "a-z" >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
+      - name: Store package name
+        run: |
+          echo 'package_name<<EOF' >> $GITHUB_ENV
+          grep -Po '"name": *\K"[^"]*"' package.json | grep -oP '"\K[^"\047]+(?=["\047])' >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
+      - name: Setup Node.js (GPR)
+        uses: actions/setup-node@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          github_repo: ${{ github.repository }}
-          version: ${{ env.PACKAGE_VERSION }}
-          git_commit_sha: ${{ github.sha }}
-          git_tag_prefix: "v"
+          node-version: '12.x'
+          registry-url: https://npm.pkg.github.com/
+          scope: '${{ env.actor_name }}'
+
+      - name: Use cached node_modules
+        uses: actions/cache@master
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          CI: true
+
+      - name: Update Package Name
+        run: |
+          sed -i 's,"name": "${{ env.package_name }}","name": "@${{ env.actor_name }}/${{ env.package_name }}",' package.json
+          cat package.json
+
+      - name: Update Publish Config
+        run: |
+          sed -i 's^registry-url^npm.pkg.github.com/@${{ env.actor_name }}^' package.json
+          cat package.json
+
+      - name: Publish to GitHub Package Registry
+        run: npm publish --access public
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
