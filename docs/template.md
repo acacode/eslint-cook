@@ -24,6 +24,15 @@ Possible import modules <%~ it.possibleModuleNames.map(moduleName => `\`${module
 
 ### `<%~ eslintConfig.name %>`  
 
+<% if (eslintConfig.defs.length) { %>
+**definitions:**  
+<%~ eslintConfig.defs.map(c => `\`${c}\``).join(', ') %>    
+<% } %>
+<% if (eslintConfig.conflicts.length) { %>
+**conflicts:**   
+<%~ eslintConfig.conflicts.map(c => `\`${c}\``).join(', ') %>  
+<% } %>  
+
 **configuration:**  
 
 ```json
@@ -31,5 +40,17 @@ Possible import modules <%~ it.possibleModuleNames.map(moduleName => `\`${module
 <%~ JSON.stringify(eslintConfig.config, null, 2) %>
 
 ```
+<% if (eslintConfig.relations.length) { %>
+**relations:**  
+<% for (const relation of eslintConfig.relations) { %>
+- `<%~ relation.name %>`  
+```json
+    
+<%~ JSON.stringify(relation.config, null, 2) %>
+    
+```  
+
+<% } %>
+<% } %>
 
 <% } %>

@@ -4,7 +4,7 @@ import {POSSIBLE_MODULE_VALUES, MODULE_CONFIGS, MODULE_CONFIGS_VALUES} from "../
 import * as fs from "fs"
 import * as _ from "lodash"
 import {mergeEslintConfigs} from "../src/utils";
-import {GeneratorConfig} from "../src/types";
+import {EslintConfig, EslintConfigRelations, GeneratorConfig, ModuleName} from "../src/types";
 
 const generate = async () => {
 
@@ -17,7 +17,18 @@ const generate = async () => {
     possibleModuleNames: POSSIBLE_MODULE_VALUES,
     eslintConfigs: _.map(MODULE_CONFIGS, moduleConfig => ({
       name: moduleConfig.name,
-      config: mergeEslintConfigs(generatorConfig, { extends: [], plugins: [] }, moduleConfig.config)
+      config: mergeEslintConfigs(generatorConfig, { extends: [], plugins: [] }, moduleConfig.config),
+      conflicts: moduleConfig.conflicts,
+      defs: moduleConfig.defs,
+      relations: _.reduce<EslintConfigRelations, { config: EslintConfig, name: ModuleName }[]>(
+        moduleConfig.relations,
+        (acc, relation, relationKey) => ([
+          ...acc,
+          {
+            name: relationKey as ModuleName,
+            config: mergeEslintConfigs(generatorConfig, { extends:[], plugins: [] }, relation),
+          }
+        ]), [])
     }))
   })
 

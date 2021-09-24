@@ -23,6 +23,10 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 
 ### `effector`  
 
+**definitions:**  
+`effector`, `effectorjs`    
+  
+
 **configuration:**  
 
 ```json
@@ -40,6 +44,10 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 
 
 ### `prettier`  
+
+**definitions:**  
+`prettier`    
+  
 
 **configuration:**  
 
@@ -70,6 +78,12 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 
 ### `babel`  
 
+**definitions:**  
+`babel`, `babeljs`    
+**conflicts:**   
+`typescript`  
+  
+
 **configuration:**  
 
 ```json
@@ -92,6 +106,10 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 
 ### `a11y`  
 
+**definitions:**  
+`a11y`    
+  
+
 **configuration:**  
 
 ```json
@@ -110,6 +128,10 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 
 ### `next`  
 
+**definitions:**  
+`next`, `nextjs`    
+  
+
 **configuration:**  
 
 ```json
@@ -125,6 +147,10 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 
 
 ### `react`  
+
+**definitions:**  
+`react`, `reactjs`    
+  
 
 **configuration:**  
 
@@ -159,6 +185,10 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 
 
 ### `import`  
+
+**definitions:**  
+`import`, `imports`    
+  
 
 **configuration:**  
 
@@ -220,9 +250,41 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
   }
 }
 ```
+**relations:**  
+- `typescript`  
+```json
+    
+{
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [
+          ".ts",
+          ".tsx",
+          ".js",
+          ".jsx",
+          ".json"
+        ]
+      }
+    }
+  },
+  "extends": [
+    "plugin:import/typescript"
+  ],
+  "plugins": [],
+  "rules": {}
+}    
+```  
+
 
 
 ### `typescript`  
+
+**definitions:**  
+`ts`, `typescript`    
+**conflicts:**   
+`babel`  
+  
 
 **configuration:**  
 
