@@ -18,6 +18,20 @@ Add this plugin to your `.eslintrc` file
 Construction `typescript+react+effector+import+prettier+next` is dynamic.  
 Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`, `a11y`, `next`, `nextjs`, `react`, `reactjs`, `import`, `imports`, `typescript`, `ts`  
 
+Examples:  
+```json
+  "extends": "plugin:dynamic/react+typescript",  
+  "plugins": ["dynamic"]
+```
+```json
+  "extends": "plugin:dynamic/typescript+import",  
+  "plugins": ["dynamic"]
+```
+```json
+  "extends": "plugin:dynamic/import+prettier",  
+  "plugins": ["dynamic"]
+```
+
 ## modules
 
 
