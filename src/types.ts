@@ -7,7 +7,8 @@ export const enum ModuleName {
   React = "react",
   Next = "next",
   Prettier = "prettier",
-  Effector = "effector"
+  Effector = "effector",
+  StyledComponents = "styled-components"
 }
 
 export type EslintConfigRuleValue = "error" | "warn" | "off" | 0 | 1 | 2

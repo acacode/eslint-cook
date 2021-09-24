@@ -8,17 +8,18 @@ import {PRETTIER_CONFIG} from "./eslint/prettier";
 import {TYPESCRIPT_CONFIG} from "./eslint/typescript";
 import {EFFECTOR_CONFIG} from "./eslint/effector";
 import * as _ from "lodash";
+import {STYLED_COMPONENTS_CONFIG} from "./eslint/styled-components";
 
 
 export const MODULE_NAMES_DIVIDER = '+'
 
 export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
-  [ModuleName.Effector]: {
-    priority: 2,
-    defs: ["effector", "effectorjs"],
-    name: ModuleName.Effector,
-    conflicts: [],
-    config: EFFECTOR_CONFIG,
+  [ModuleName.TypeScript]: {
+    name: ModuleName.TypeScript,
+    defs: ["ts", "typescript"],
+    conflicts: [ModuleName.Babel],
+    config: TYPESCRIPT_CONFIG,
+    priority: 20,
   },
   [ModuleName.Prettier]: {
     priority: 1,
@@ -26,6 +27,28 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
     name: ModuleName.Prettier,
     conflicts: [],
     config: PRETTIER_CONFIG,
+  },
+  [ModuleName.React]: {
+    priority: 2,
+    defs: ["react", "reactjs"],
+    name: ModuleName.React,
+    conflicts: [],
+    config: REACT_CONFIG,
+  },
+  [ModuleName.Import]: {
+    name: ModuleName.Import,
+    defs: ["import", "imports"],
+    conflicts: [],
+    config: IMPORT_CONFIG,
+    priority: 3,
+    relations: IMPORT_CONFIG_RELATIONS
+  },
+  [ModuleName.Effector]: {
+    priority: 2,
+    defs: ["effector", "effectorjs"],
+    name: ModuleName.Effector,
+    conflicts: [],
+    config: EFFECTOR_CONFIG,
   },
   [ModuleName.Babel]: {
     priority: 0,
@@ -48,28 +71,13 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
     config: NEXT_CONFIG,
     priority: 100,
   },
-  [ModuleName.React]: {
-    priority: 2,
-    defs: ["react", "reactjs"],
-    name: ModuleName.React,
+  [ModuleName.StyledComponents]: {
+    name: ModuleName.StyledComponents,
+    defs: ["sc", "styled-components"],
     conflicts: [],
-    config: REACT_CONFIG,
-  },
-  [ModuleName.Import]: {
-    name: ModuleName.Import,
-    defs: ["import", "imports"],
-    conflicts: [],
-    config: IMPORT_CONFIG,
-    priority: 3,
-    relations: IMPORT_CONFIG_RELATIONS
-  },
-  [ModuleName.TypeScript]: {
-    name: ModuleName.TypeScript,
-    defs: ["ts", "typescript"],
-    conflicts: [ModuleName.Babel],
-    config: TYPESCRIPT_CONFIG,
-    priority: 20,
-  },
+    config: STYLED_COMPONENTS_CONFIG,
+    priority: 17,
+  }
 }
 
 export const MODULE_CONFIGS_VALUES = _.values(MODULE_CONFIGS);

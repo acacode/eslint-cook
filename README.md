@@ -16,7 +16,7 @@ Add this plugin to your `.eslintrc` file
 ```
 
 Construction `typescript+react+effector+import+prettier+next` is dynamic.  
-Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`, `a11y`, `next`, `nextjs`, `react`, `reactjs`, `import`, `imports`, `typescript`, `ts`  
+Possible import modules `typescript`, `ts`, `prettier`, `react`, `reactjs`, `import`, `imports`, `effector`, `effectorjs`, `babel`, `babeljs`, `a11y`, `next`, `nextjs`, `styled-components`, `sc`  
 
 Examples:  
 ```json
@@ -35,10 +35,12 @@ Examples:
 ## modules
 
 
-### `effector`  
+### `typescript`  
 
 **definitions:**  
-`effector`, `effectorjs`    
+`ts`, `typescript`    
+**conflicts:**   
+`babel`  
   
 
 **configuration:**  
@@ -46,13 +48,22 @@ Examples:
 ```json
 
 {
+  "parser": "@typescript-eslint/parser",
   "extends": [
-    "plugin:effector/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
-    "effector"
+    "@typescript-eslint"
   ],
-  "rules": {}
+  "rules": {
+    "no-empty-interface": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
 }
 ```
 
@@ -86,76 +97,6 @@ Examples:
       }
     ]
   }
-}
-```
-
-
-### `babel`  
-
-**definitions:**  
-`babel`, `babeljs`    
-**conflicts:**   
-`typescript`  
-  
-
-**configuration:**  
-
-```json
-
-{
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "allowImportExportEverywhere": false,
-    "ecmaFeatures": {
-      "globalReturn": false
-    }
-  },
-  "extends": [],
-  "plugins": [],
-  "rules": {}
-}
-```
-
-
-### `a11y`  
-
-**definitions:**  
-`a11y`    
-  
-
-**configuration:**  
-
-```json
-
-{
-  "extends": [
-    "plugin:jsx-a11y/recommended"
-  ],
-  "plugins": [
-    "jsx-a11y"
-  ],
-  "rules": {}
-}
-```
-
-
-### `next`  
-
-**definitions:**  
-`next`, `nextjs`    
-  
-
-**configuration:**  
-
-```json
-
-{
-  "extends": [
-    "next/core-web-vitals"
-  ],
-  "plugins": [],
-  "rules": {}
 }
 ```
 
@@ -292,12 +233,10 @@ Examples:
 
 
 
-### `typescript`  
+### `effector`  
 
 **definitions:**  
-`ts`, `typescript`    
-**conflicts:**   
-`babel`  
+`effector`, `effectorjs`    
   
 
 **configuration:**  
@@ -305,21 +244,104 @@ Examples:
 ```json
 
 {
-  "parser": "@typescript-eslint/parser",
   "extends": [
-    "plugin:@typescript-eslint/recommended"
+    "plugin:effector/recommended"
   ],
   "plugins": [
-    "@typescript-eslint"
+    "effector"
+  ],
+  "rules": {}
+}
+```
+
+
+### `babel`  
+
+**definitions:**  
+`babel`, `babeljs`    
+**conflicts:**   
+`typescript`  
+  
+
+**configuration:**  
+
+```json
+
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "ecmaFeatures": {
+      "globalReturn": false
+    }
+  },
+  "extends": [],
+  "plugins": [],
+  "rules": {}
+}
+```
+
+
+### `a11y`  
+
+**definitions:**  
+`a11y`    
+  
+
+**configuration:**  
+
+```json
+
+{
+  "extends": [
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": [
+    "jsx-a11y"
+  ],
+  "rules": {}
+}
+```
+
+
+### `next`  
+
+**definitions:**  
+`next`, `nextjs`    
+  
+
+**configuration:**  
+
+```json
+
+{
+  "extends": [
+    "next/core-web-vitals"
+  ],
+  "plugins": [],
+  "rules": {}
+}
+```
+
+
+### `styled-components`  
+
+**definitions:**  
+`sc`, `styled-components`    
+  
+
+**configuration:**  
+
+```json
+
+{
+  "extends": [],
+  "plugins": [
+    "better-styled-components"
   ],
   "rules": {
-    "no-empty-interface": "off",
-    "@typescript-eslint/no-empty-interface": "off",
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "error",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "better-styled-components/sort-declarations-alphabetically": 2
   }
 }
 ```
