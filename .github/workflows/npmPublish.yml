@@ -26,6 +26,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.npm_token }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: publish packages
-        run: node tools/build publish latest
+        run: npm publish
         env:
           PRINT_ERRORS: false
