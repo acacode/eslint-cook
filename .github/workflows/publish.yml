@@ -64,7 +64,7 @@ jobs:
 
       - name: Update Package Name
         run: |
-          sed -i 's,"name": "${{ env.package_name }}","name": "@${{ env.actor_name }}/${{ env.package_name }}",' package.json
+          sed -i 's,"name": "${{ env.package_name }}","name": "@acacode/${{ env.package_name }}",' package.json
           cat package.json
 
       - name: Update Publish Config
