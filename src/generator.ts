@@ -72,5 +72,3 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
 
 export const configs = configPicker;
 export const rules = {};
-
-console.info(configs['react']);
