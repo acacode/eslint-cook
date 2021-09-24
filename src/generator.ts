@@ -4,21 +4,29 @@ import {EslintConfig, GeneratorConfig, ModuleName} from "./types";
 import {BASE_CONFIG} from "./eslint/_base_";
 import * as _ from "lodash";
 
+const MODULE_CONFIGS_VALUES = _.values(MODULE_CONFIGS);
+const POSSIBLE_MODULE_VALUES = _.uniq(_.flatten(MODULE_CONFIGS_VALUES.map(moduleConfig => [moduleConfig.name, ...moduleConfig.defs])))
+
 const configPicker = new Proxy({} as Record<string, EslintConfig>, {
   get(target, path) {
     const configuration = { ...BASE_CONFIG }
-    const moduleNames = (_.split(_.toString(path), MODULE_NAMES_DIVIDER) as ModuleName[])
-    const moduleConfigs = moduleNames
-      .filter((moduleName) => {
-        if (!MODULE_CONFIGS[moduleName])
+    const moduleConfigs =
+      (_.split(_.toString(path), MODULE_NAMES_DIVIDER) as ModuleName[])
+      .map(rawModuleDef => {
+        const moduleDef = _.toLower(rawModuleDef);
+        const moduleConfig = MODULE_CONFIGS_VALUES.find(moduleConfig => [moduleConfig.name, ...moduleConfig.defs].includes(moduleDef));
+
+        if (!moduleConfig) {
           throw new Error(
-            `unknown module "${moduleName}".`+
-            `\nPossible modules: ${_.keys(MODULE_CONFIGS).map(m => `"${m}"`).join(', ')}`
+            `unknown module "${rawModuleDef}".`+
+            `\nPossible modules: ${POSSIBLE_MODULE_VALUES.map(m => `"${m}"`).join(', ')}`
           )
-        return true;
+        }
+
+        return moduleConfig;
       })
-      .map(moduleName => MODULE_CONFIGS[moduleName])
       .sort((a, b) => a.priority > b.priority ? 1 : -1);
+    const moduleNames = moduleConfigs.map(moduleConfig => moduleConfig.name);
 
 
     const generatorConfig: GeneratorConfig = {

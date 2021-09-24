@@ -14,42 +14,49 @@ export const MODULE_NAMES_DIVIDER = '+'
 export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.Effector]: {
     priority: 2,
+    defs: ["effector", "effectorjs"],
     name: ModuleName.Effector,
     conflicts: [],
     config: EFFECTOR_CONFIG,
   },
   [ModuleName.Prettier]: {
     priority: 1,
+    defs: ["prettier"],
     name: ModuleName.Prettier,
     conflicts: [],
     config: PRETTIER_CONFIG,
   },
   [ModuleName.Babel]: {
     priority: 0,
+    defs: ["babel", "babeljs"],
     name: ModuleName.Babel,
     conflicts: [ModuleName.TypeScript],
     config: BABEL_CONFIG,
   },
   [ModuleName.A11y]: {
     priority: 0,
+    defs: ["a11y"],
     name: ModuleName.A11y,
     conflicts: [],
     config: A11Y_CONFIG,
   },
   [ModuleName.Next]: {
     name: ModuleName.Next,
+    defs: ["next", "nextjs"],
     conflicts: [],
     config: NEXT_CONFIG,
     priority: 100,
   },
   [ModuleName.React]: {
     priority: 2,
+    defs: ["react", "reactjs"],
     name: ModuleName.React,
     conflicts: [],
     config: REACT_CONFIG,
   },
   [ModuleName.Import]: {
     name: ModuleName.Import,
+    defs: ["import", "imports"],
     conflicts: [],
     config: IMPORT_CONFIG,
     priority: 3,
@@ -57,6 +64,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   },
   [ModuleName.TypeScript]: {
     name: ModuleName.TypeScript,
+    defs: ["ts", "typescript"],
     conflicts: [ModuleName.Babel],
     config: TYPESCRIPT_CONFIG,
     priority: 20,
