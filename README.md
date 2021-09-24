@@ -18,11 +18,12 @@ Add this plugin to your `.eslintrc` file
 Construction `typescript+react+effector+import+prettier+next` is dynamic.  
 Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`, `a11y`, `next`, `nextjs`, `react`, `reactjs`, `import`, `imports`, `typescript`, `ts`  
 
+## modules
 
 
-## `effector`  
+### `effector`  
 
-### configuration  
+**configuration:**  
 
 ```json
 
@@ -38,9 +39,9 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 ```
 
 
-## `prettier`  
+### `prettier`  
 
-### configuration  
+**configuration:**  
 
 ```json
 
@@ -67,9 +68,9 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 ```
 
 
-## `babel`  
+### `babel`  
 
-### configuration  
+**configuration:**  
 
 ```json
 
@@ -89,9 +90,9 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 ```
 
 
-## `a11y`  
+### `a11y`  
 
-### configuration  
+**configuration:**  
 
 ```json
 
@@ -107,9 +108,9 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 ```
 
 
-## `next`  
+### `next`  
 
-### configuration  
+**configuration:**  
 
 ```json
 
@@ -123,9 +124,9 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 ```
 
 
-## `react`  
+### `react`  
 
-### configuration  
+**configuration:**  
 
 ```json
 
@@ -157,9 +158,9 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 ```
 
 
-## `import`  
+### `import`  
 
-### configuration  
+**configuration:**  
 
 ```json
 
@@ -221,9 +222,9 @@ Possible import modules `effector`, `effectorjs`, `prettier`, `babel`, `babeljs`
 ```
 
 
-## `typescript`  
+### `typescript`  
 
-### configuration  
+**configuration:**  
 
 ```json
 

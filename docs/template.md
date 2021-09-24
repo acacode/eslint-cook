@@ -18,12 +18,13 @@ Add this plugin to your `.eslintrc` file
 Construction `typescript+react+effector+import+prettier+next` is dynamic.  
 Possible import modules <%~ it.possibleModuleNames.map(moduleName => `\`${moduleName}\``).join(', ') %>  
 
+## modules
 
 <% for (const eslintConfig of it.eslintConfigs) { %>
 
-## `<%~ eslintConfig.name %>`  
+### `<%~ eslintConfig.name %>`  
 
-### configuration  
+**configuration:**  
 
 ```json
 
