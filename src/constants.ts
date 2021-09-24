@@ -7,6 +7,7 @@ import {IMPORT_CONFIG, IMPORT_CONFIG_RELATIONS} from "./eslint/import";
 import {PRETTIER_CONFIG} from "./eslint/prettier";
 import {TYPESCRIPT_CONFIG} from "./eslint/typescript";
 import {EFFECTOR_CONFIG} from "./eslint/effector";
+import * as _ from "lodash";
 
 
 export const MODULE_NAMES_DIVIDER = '+'
@@ -70,3 +71,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
     priority: 20,
   },
 }
+
+export const MODULE_CONFIGS_VALUES = _.values(MODULE_CONFIGS);
+
+export const POSSIBLE_MODULE_VALUES = _.uniq(_.flatten(MODULE_CONFIGS_VALUES.map(moduleConfig => [moduleConfig.name, ...moduleConfig.defs])))

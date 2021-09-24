@@ -1,11 +1,8 @@
 import { mergeEslintConfigs} from "./utils";
-import {MODULE_CONFIGS, MODULE_NAMES_DIVIDER} from "./constants";
+import { MODULE_CONFIGS_VALUES, MODULE_NAMES_DIVIDER, POSSIBLE_MODULE_VALUES } from "./constants";
 import {EslintConfig, GeneratorConfig, ModuleName} from "./types";
 import {BASE_CONFIG} from "./eslint/_base_";
 import * as _ from "lodash";
-
-const MODULE_CONFIGS_VALUES = _.values(MODULE_CONFIGS);
-const POSSIBLE_MODULE_VALUES = _.uniq(_.flatten(MODULE_CONFIGS_VALUES.map(moduleConfig => [moduleConfig.name, ...moduleConfig.defs])))
 
 const configPicker = new Proxy({} as Record<string, EslintConfig>, {
   get(target, path) {
@@ -19,7 +16,7 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
         if (!moduleConfig) {
           throw new Error(
             `unknown module "${rawModuleDef}".`+
-            `\nPossible modules: ${POSSIBLE_MODULE_VALUES.map(m => `"${m}"`).join(', ')}`
+            `\nPossible import modules: ${POSSIBLE_MODULE_VALUES.map(m => `"${m}"`).join(', ')}`
           )
         }
 
