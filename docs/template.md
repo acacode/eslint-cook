@@ -14,8 +14,8 @@ Add this plugin to your `.eslintrc` file
 "extends": "plugin:dynamic/typescript+react+effector+import+prettier+next",
 "plugins": ["dynamic"],
 ```
-
-test
+ 
+ foo bar baz
 
 Construction `typescript+react+effector+import+prettier+next` is dynamic.  
 Possible import modules <%~ it.possibleModuleNames.map(moduleName => `\`${moduleName}\``).join(', ') %>  
