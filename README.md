@@ -16,7 +16,7 @@ Add this plugin to your `.eslintrc` file
 ```
 
 Construction `typescript+react+effector+import+prettier+next` is dynamic.  
-Possible import modules `typescript`, `ts`, `prettier`, `react`, `reactjs`, `import`, `imports`, `effector`, `effectorjs`, `babel`, `babeljs`, `a11y`, `next`, `nextjs`, `styled-components`, `sc`  
+Possible import modules `typescript`, `ts`, `prettier`, `react`, `reactjs`, `import`, `imports`, `effector`, `effectorjs`, `babel`, `babeljs`, `a11y`, `next`, `nextjs`, `styled-components`, `sc`, `unicorn`  
 
 Examples:  
 ```json
@@ -35,7 +35,7 @@ Examples:
 ## modules
 
 
-### `typescript`  
+### [typescript](https://github.com/typescript-eslint/typescript-eslint#readme)  
 
 **definitions:**  
 `ts`, `typescript`    
@@ -68,7 +68,7 @@ Examples:
 ```
 
 
-### `prettier`  
+### [prettier](https://github.com/prettier/eslint-plugin-prettier#readme)  
 
 **definitions:**  
 `prettier`    
@@ -101,7 +101,7 @@ Examples:
 ```
 
 
-### `react`  
+### [react](https://github.com/yannickcr/eslint-plugin-react#readme)  
 
 **definitions:**  
 `react`, `reactjs`    
@@ -139,7 +139,7 @@ Examples:
 ```
 
 
-### `import`  
+### [import](https://github.com/import-js/eslint-plugin-import#readme)  
 
 **definitions:**  
 `import`, `imports`    
@@ -233,7 +233,7 @@ Examples:
 
 
 
-### `effector`  
+### [effector](https://github.com/effector/eslint-plugin#readme)  
 
 **definitions:**  
 `effector`, `effectorjs`    
@@ -255,7 +255,7 @@ Examples:
 ```
 
 
-### `babel`  
+### [babel](https://www.npmjs.com/package/@babel/eslint-parser)  
 
 **definitions:**  
 `babel`, `babeljs`    
@@ -268,7 +268,7 @@ Examples:
 ```json
 
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": false,
@@ -283,7 +283,7 @@ Examples:
 ```
 
 
-### `a11y`  
+### [a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme)  
 
 **definitions:**  
 `a11y`    
@@ -305,7 +305,7 @@ Examples:
 ```
 
 
-### `next`  
+### [next](https://nextjs.org/docs/basic-features/eslint)  
 
 **definitions:**  
 `next`, `nextjs`    
@@ -325,7 +325,7 @@ Examples:
 ```
 
 
-### `styled-components`  
+### [styled-components](https://github.com/tinloof/eslint-plugin-better-styled-components#readme)  
 
 **definitions:**  
 `sc`, `styled-components`    
@@ -343,6 +343,28 @@ Examples:
   "rules": {
     "better-styled-components/sort-declarations-alphabetically": 2
   }
+}
+```
+
+
+### [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn#readme)  
+
+**definitions:**  
+`unicorn`    
+  
+
+**configuration:**  
+
+```json
+
+{
+  "extends": [
+    "plugin:unicorn/recommended"
+  ],
+  "plugins": [
+    "unicorn"
+  ],
+  "rules": {}
 }
 ```
 

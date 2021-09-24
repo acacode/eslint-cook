@@ -16,10 +16,8 @@ const generate = async () => {
   const readme = await eta.renderFile(path.resolve(__dirname, "./template.md"), {
     possibleModuleNames: POSSIBLE_MODULE_VALUES,
     eslintConfigs: _.map(MODULE_CONFIGS, moduleConfig => ({
-      name: moduleConfig.name,
+      ...moduleConfig,
       config: mergeEslintConfigs(generatorConfig, { extends: [], plugins: [] }, moduleConfig.config),
-      conflicts: moduleConfig.conflicts,
-      defs: moduleConfig.defs,
       relations: _.reduce<EslintConfigRelations, { config: EslintConfig, name: ModuleName }[]>(
         moduleConfig.relations,
         (acc, relation, relationKey) => ([

@@ -36,7 +36,7 @@ Examples:
 
 <% for (const eslintConfig of it.eslintConfigs) { %>
 
-### `<%~ eslintConfig.name %>`  
+### [<%~ eslintConfig.name %>](<%~ eslintConfig.docs %>)  
 
 <% if (eslintConfig.defs.length) { %>
 **definitions:**  

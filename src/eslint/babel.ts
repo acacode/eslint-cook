@@ -2,7 +2,7 @@ import {ModuleConfig, EslintConfig, ModuleName} from "../types";
 
 
 export const BABEL_CONFIG: EslintConfig = {
-  parser: "babel-eslint",
+  parser: "@babel/eslint-parser",
   parserOptions: {
     sourceType: "module",
     allowImportExportEverywhere: false,

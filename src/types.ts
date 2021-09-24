@@ -8,7 +8,8 @@ export const enum ModuleName {
   Next = "next",
   Prettier = "prettier",
   Effector = "effector",
-  StyledComponents = "styled-components"
+  StyledComponents = "styled-components",
+  Unicorn = "unicorn",
 }
 
 export type EslintConfigRuleValue = "error" | "warn" | "off" | 0 | 1 | 2
@@ -33,6 +34,7 @@ export type EslintConfigRelations = Partial<Record<ModuleName, EslintConfig>>
 
 export type ModuleConfig = {
   name: ModuleName;
+  docs: string;
   defs: string[];
   priority: number;
   config: EslintConfig;

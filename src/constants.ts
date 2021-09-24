@@ -9,6 +9,7 @@ import {TYPESCRIPT_CONFIG} from "./eslint/typescript";
 import {EFFECTOR_CONFIG} from "./eslint/effector";
 import * as _ from "lodash";
 import {STYLED_COMPONENTS_CONFIG} from "./eslint/styled-components";
+import {UNICORN_CONFIG} from "./eslint/unicorn";
 
 
 export const MODULE_NAMES_DIVIDER = '+'
@@ -17,6 +18,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.TypeScript]: {
     name: ModuleName.TypeScript,
     defs: ["ts", "typescript"],
+    docs: "https://github.com/typescript-eslint/typescript-eslint#readme",
     conflicts: [ModuleName.Babel],
     config: TYPESCRIPT_CONFIG,
     priority: 20,
@@ -24,6 +26,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.Prettier]: {
     priority: 1,
     defs: ["prettier"],
+    docs: "https://github.com/prettier/eslint-plugin-prettier#readme",
     name: ModuleName.Prettier,
     conflicts: [],
     config: PRETTIER_CONFIG,
@@ -31,6 +34,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.React]: {
     priority: 2,
     defs: ["react", "reactjs"],
+    docs: "https://github.com/yannickcr/eslint-plugin-react#readme",
     name: ModuleName.React,
     conflicts: [],
     config: REACT_CONFIG,
@@ -38,6 +42,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.Import]: {
     name: ModuleName.Import,
     defs: ["import", "imports"],
+    docs: "https://github.com/import-js/eslint-plugin-import#readme",
     conflicts: [],
     config: IMPORT_CONFIG,
     priority: 3,
@@ -46,6 +51,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.Effector]: {
     priority: 2,
     defs: ["effector", "effectorjs"],
+    docs: "https://github.com/effector/eslint-plugin#readme",
     name: ModuleName.Effector,
     conflicts: [],
     config: EFFECTOR_CONFIG,
@@ -53,6 +59,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.Babel]: {
     priority: 0,
     defs: ["babel", "babeljs"],
+    docs: "https://www.npmjs.com/package/@babel/eslint-parser",
     name: ModuleName.Babel,
     conflicts: [ModuleName.TypeScript],
     config: BABEL_CONFIG,
@@ -60,6 +67,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.A11y]: {
     priority: 0,
     defs: ["a11y"],
+    docs: "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme",
     name: ModuleName.A11y,
     conflicts: [],
     config: A11Y_CONFIG,
@@ -67,6 +75,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.Next]: {
     name: ModuleName.Next,
     defs: ["next", "nextjs"],
+    docs: "https://nextjs.org/docs/basic-features/eslint",
     conflicts: [],
     config: NEXT_CONFIG,
     priority: 100,
@@ -74,9 +83,18 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.StyledComponents]: {
     name: ModuleName.StyledComponents,
     defs: ["sc", "styled-components"],
+    docs: "https://github.com/tinloof/eslint-plugin-better-styled-components#readme",
     conflicts: [],
     config: STYLED_COMPONENTS_CONFIG,
     priority: 17,
+  },
+  [ModuleName.Unicorn]: {
+    name: ModuleName.Unicorn,
+    defs: ["unicorn"],
+    docs: "https://github.com/sindresorhus/eslint-plugin-unicorn#readme",
+    conflicts: [],
+    config: UNICORN_CONFIG,
+    priority: 5,
   }
 }
 
