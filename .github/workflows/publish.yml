@@ -1,5 +1,6 @@
-name: eslint-plugin-dynamic publish
-
+name: publish
+env:
+  CI: true
 on:
   push:
     branches: [ main ]
@@ -15,6 +16,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+          registry-url: 'https://npm.pkg.github.com'
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
@@ -26,9 +28,17 @@ jobs:
         run: yarn build
       - name: publish
         run: |
-          npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-          npm config set //npm.pkg.github.com/:_authToken $GITHUB_TOKEN
-          npm publish --ignore-scripts --tag latest
+          npx can-npm-publish --verbose && npm publish --ignore-scripts || echo "Does not publish"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: package-version
+        run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
+      - name: package-version-to-git-tag
+        uses: pkgdeps/git-tag-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repo: ${{ github.repository }}
+          version: ${{ env.PACKAGE_VERSION }}
+          git_commit_sha: ${{ github.sha }}
+          git_tag_prefix: "v"

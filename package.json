@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-dynamic",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -62,6 +62,7 @@
     "url": "git://github.com/acacode/eslint-plugin-dynamic"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
   }
 }
