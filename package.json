@@ -65,9 +65,5 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/acacode/eslint-plugin-dynamic"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/acacode"
   }
 }

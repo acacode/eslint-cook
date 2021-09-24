@@ -16,7 +16,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-          registry-url: 'https://npm.pkg.github.com/acacode'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: "@acacode"
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
@@ -28,9 +29,7 @@ jobs:
         run: yarn build
       - name: publish
         run: |
-          npm config set //npm.pkg.github.com/acacode/:_authToken=\${NODE_AUTH_TOKEN}
-          npm config set registry https://npm.pkg.github.com/acacode/
-          npm config set always-auth false
+          node gpr-hack.js
           yarn can-publish && npm publish --ignore-scripts
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
