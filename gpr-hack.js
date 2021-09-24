@@ -1,4 +1,4 @@
-import { writeFileSync, readFileSync } from "fs";
+const { writeFileSync, readFileSync } = require("fs");
 
 const file = readFileSync("./package.json", {
   encoding: "utf-8",
