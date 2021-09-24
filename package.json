@@ -47,7 +47,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-tsc": "^2.0.0",
     "eslint-webpack-plugin": "^3.0.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "prettier": "^2.4.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.173",
@@ -67,6 +68,6 @@
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/acacode"
   }
 }
