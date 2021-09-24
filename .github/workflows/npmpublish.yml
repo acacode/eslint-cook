@@ -1,8 +1,10 @@
-name: npm publish
+name: eslint-plugin-dynamic publish
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'package.json'
   pull_request:
     branches: [ main ]
 jobs:
@@ -24,9 +26,9 @@ jobs:
         run: yarn build
       - name: publish
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts
+          npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+          npm config set //npm.pkg.github.com/:_authToken $GITHUB_TOKEN
+          npm publish --ignore-scripts --tag latest
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PRINT_ERRORS: false
