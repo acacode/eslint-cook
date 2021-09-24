@@ -23,8 +23,6 @@ const generate = async () => {
 
   if (!readme) return;
 
-  console.info("readme", readme)
-
   fs.writeFile(path.resolve(__dirname, '../README.md'), readme, _.noop)
 }
 
