@@ -1,4 +1,8 @@
-const { eslintDeps } = require("./package.json")
-const { exec } = require("child_process")
+const { eslintDeps } = require("./package.json");
+const { exec } = require("child_process");
+const path = require('path')
 
-exec(`npm install --no-save --quiet --no-audit ${Object.keys(eslintDeps).map(key => `${key}@${eslintDeps[key]}`).join(" ")}`, { cwd: process.cwd() }, () => {})
+const pathToInstall = path.resolve(__dirname, '../..')
+const deps = Object.keys(eslintDeps).map(key => `${key}@${eslintDeps[key]}`).join(" ");
+
+exec(`npm install --prefix ${pathToInstall} --no-save --quiet --no-audit ${deps}`, { cwd: process.cwd() }, () => {})
