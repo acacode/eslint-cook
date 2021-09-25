@@ -14,9 +14,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: node-14-modules-${{ hashFiles('**/yarn.lock') }}
+          key: node-14-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Update Publish Config
         run: sed -i 's^registry-url^registry.npmjs.org^' package.json
       - name: Publish to NPM
@@ -56,12 +56,12 @@ jobs:
         uses: actions/cache@master
         with:
           path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          key: nodeModules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             nodeModules-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
         env:
           CI: true
 
