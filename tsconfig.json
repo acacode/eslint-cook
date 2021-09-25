@@ -1,18 +1,11 @@
 {
   "compileOnSave": false,
   "include": ["src"],
-  "ts-node": {
-    // these options are overrides used only by ts-node
-    // same as our --compilerOptions flag and our TS_NODE_COMPILER_OPTIONS environment variable
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  },
   "compilerOptions": {
     "pretty": true,
     "outDir": "dist",
     "target": "esnext",
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "jsx": "react",
     "strict": false,

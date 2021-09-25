@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-dynamic",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "build": "rimraf dist && tsc",
     "can-publish": "node version-check.js",
     "docs": "ts-node docs/generator.ts",
-    "prepublishOnly": "yarn build && yarn docs"
+    "prepublishOnly": "yarn build && yarn docs",
+    "postinstall": "node postinstall.js"
   },
   "keywords": [
     "eslint",
@@ -26,16 +27,13 @@
     "LICENSE",
     "README.md",
     "index.js",
+    "postinstall.js",
     "dist"
   ],
-  "peerDependencies": {
-    "eslint": "^5.0.0 || ^6.0.0 || ^7.0.0"
-  },
-  "dependencies": {
+  "eslintDeps": {
     "@babel/eslint-parser": "^7.15.7",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
-    "cosmiconfig": "^7.0.1",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-alias": "^1.1.2",
@@ -46,14 +44,19 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-tsc": "^2.0.0",
-    "eslint-plugin-unicorn": "^36.0.0",
-    "eslint-webpack-plugin": "^3.0.1",
+    "eslint-plugin-unicorn": "^36.0.0"
+  },
+  "peerDependencies": {
+    "eslint": "^5.0.0 || ^6.0.0 || ^7.0.0"
+  },
+  "dependencies": {
+    "cosmiconfig": "^7.0.1",
     "lodash": "^4.17.21",
     "prettier": "^2.4.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.173",
+    "@types/node": "^16.9.6",
     "eta": "^1.12.3",
     "rimraf": "^3.0.2",
     "simple-git-hooks": "^2.6.1",
