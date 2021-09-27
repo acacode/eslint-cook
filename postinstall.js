@@ -1,5 +1,4 @@
-import {MODULE_CONFIGS} from "./dist/constants";
-
+const { MODULE_CONFIGS } = require("./dist/constants");
 const path = require('path');
 const {PluginManager} = require("live-plugin-manager");
 
