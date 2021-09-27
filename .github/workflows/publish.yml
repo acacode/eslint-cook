@@ -88,7 +88,10 @@ jobs:
         with:
           node-version: 14
       - name: package-version
-        run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
+        run: |
+          - npm i
+          - npm run prepublishOnly
+          - node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
       - name: package-version-to-git-tag
         uses: pkgdeps/git-tag-action@v2
         with:
