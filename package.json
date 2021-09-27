@@ -22,7 +22,7 @@
     "node": ">=14"
   },
   "simple-git-hooks": {
-    "pre-commit": "npm run prepare-package && git add -A"
+    "pre-commit": "yarn syncDeps && git add -A"
   },
   "files": [
     "LICENSE",
