@@ -39,13 +39,11 @@
     "cosmiconfig": "^7.0.1",
     "live-plugin-manager": "^0.16.0",
     "lodash": "^4.17.21",
-    "npm": "^7.24.1 ",
     "synchronized-promise": "^0.3.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.173",
     "@types/node": "^16.9.6",
-    "@types/npm": "^7.19.0",
     "eta": "^1.12.3",
     "rimraf": "^3.0.2",
     "simple-git-hooks": "^2.6.1",
