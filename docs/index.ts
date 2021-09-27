@@ -1,6 +1,6 @@
 import * as eta from "eta";
 import * as path from "path"
-import {POSSIBLE_MODULE_VALUES, MODULE_CONFIGS, MODULE_CONFIGS_VALUES} from "../src/constants";
+import {MODULE_CONFIGS, MODULE_CONFIGS_VALUES} from "../src/constants";
 import * as fs from "fs"
 import * as _ from "lodash"
 import {mergeEslintConfigs} from "../src/utils";
@@ -21,7 +21,7 @@ const generate = async () => {
       ]
     }, [])
 
-  const readme = await eta.renderFile(path.resolve(__dirname, "./template.md"), {
+  const readme = await eta.renderFile(path.resolve(__dirname, "./readme.template.md"), {
     possibleModuleNames: possibleModuleNames,
     eslintConfigs: _.map(MODULE_CONFIGS, moduleConfig => ({
       ...moduleConfig,

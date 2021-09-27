@@ -32,11 +32,13 @@ export interface EslintConfig {
 
 export type EslintConfigRelations = Partial<Record<ModuleName, EslintConfig>>
 
+export type ModuleConfigDep = { name: string; version: string }
+
 export type ModuleConfig = {
   name: ModuleName;
   docs: string;
   defs: string[];
-  deps: { name: string; version: string }[];
+  deps: ModuleConfigDep[];
   priority: number;
   config: EslintConfig;
   conflicts: ModuleName[];
