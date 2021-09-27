@@ -1,4 +1,6 @@
-# eslint-plugin-dynamic
+# eslint-plugin-dynamic  
+
+[![NPM badge](https://img.shields.io/npm/v/eslint-plugin-dynamic.svg)](https://www.npmjs.com/package/eslint-plugin-dynamic)
 
 ## Install
 ```bash
