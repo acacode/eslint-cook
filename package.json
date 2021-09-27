@@ -22,7 +22,7 @@
     "node": ">=14"
   },
   "simple-git-hooks": {
-    "pre-commit": "npm run prepare-package && git status && git add -A"
+    "pre-commit": "npm run prepare-package && git status  && git add -A"
   },
   "files": [
     "LICENSE",
@@ -34,7 +34,23 @@
     "prettier": "*",
     "eslint": "^5.0.0 || ^6.0.0 || ^7.0.0"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "prettier": "^2.4.1",
+    "eslint": "^5.0.0 || ^6.0.0 || ^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-effector": "^0.2.0",
+    "@babel/eslint-parser": "^7.15.7",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-config-next": "^11.1.2",
+    "eslint-plugin-better-styled-components": "^1.1.2",
+    "eslint-plugin-unicorn": "^36.0.0"
+  },
   "dependencies": {
     "cosmiconfig": "^7.0.1",
     "install-peerdeps": "^3.0.3",
