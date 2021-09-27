@@ -1,14 +1,22 @@
-import { mergeEslintConfigs} from "./utils";
-import { MODULE_CONFIGS_VALUES, MODULE_NAMES_DIVIDER, POSSIBLE_MODULE_VALUES } from "./constants";
+import {mergeEslintConfigs} from "./utils";
+import {MODULE_CONFIGS_VALUES, MODULE_NAMES_DIVIDER, POSSIBLE_MODULE_VALUES} from "./constants";
 import {EslintConfig, GeneratorConfig, ModuleName} from "./types";
 import {BASE_CONFIG} from "./eslint/_base_";
 import * as _ from "lodash";
+import {PluginManager} from "live-plugin-manager";
+import {default as sp} from 'synchronized-promise'
+import * as path from "path"
+
 
 const configPicker = new Proxy({} as Record<string, EslintConfig>, {
-  get(target, path) {
+  async get(target, combination) {
+    const pluginManager = new PluginManager({
+      pluginsPath: path.join(process.cwd(), "node_modules")
+    })
+
     const configuration = { ...BASE_CONFIG }
     const moduleConfigs =
-      (_.split(_.toString(path), MODULE_NAMES_DIVIDER) as ModuleName[])
+      (_.split(_.toString(combination), MODULE_NAMES_DIVIDER) as ModuleName[])
       .map(rawModuleDef => {
         const moduleDef = _.toLower(rawModuleDef);
         const moduleConfig = MODULE_CONFIGS_VALUES.find(moduleConfig => [moduleConfig.name, ...moduleConfig.defs].includes(moduleDef));
@@ -34,11 +42,14 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
     const mergeEslintConfig = _.curry(mergeEslintConfigs)(generatorConfig, configuration)
 
     for (const moduleConfig of moduleConfigs) {
-      const { conflicts, config: eslintConfig, relations } = moduleConfig;
+      const { conflicts, config: eslintConfig, relations, deps } = moduleConfig;
 
       if (conflicts.some(moduleNames.includes.bind(moduleNames))) {
         throw new Error(`using "${moduleConfig.name}" module is not allowed with ${conflicts.map(m => `"${m}"`).join(', ')}`)
       }
+
+      // @ts-expect-error
+      _.each(deps, dep => sp(pluginManager.installFromNpm(dep.name, dep.version)))
 
       _.assign(configuration, mergeEslintConfig(eslintConfig))
 
@@ -52,7 +63,6 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
     return configuration;
   }
 });
-
 
 export const configs = configPicker;
 export const rules = {};
