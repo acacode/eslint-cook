@@ -26,11 +26,11 @@ Examples:
   "plugins": ["dynamic"]
 ```
 ```json
-  "extends": "plugin:dynamic/typescript+import",  
+  "extends": ["plugin:dynamic/typescript+import"],  
   "plugins": ["dynamic"]
 ```
 ```json
-  "extends": "plugin:dynamic/import+prettier",  
+  "extends": ["plugin:dynamic/import+prettier"],  
   "plugins": ["dynamic"]
 ```
 
@@ -38,6 +38,8 @@ Examples:
 
 
 ### [typescript](https://github.com/typescript-eslint/typescript-eslint#readme)  
+
+> dependencies: [@typescript-eslint/eslint-plugin@^4.28.3](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin), [@typescript-eslint/parser@^4.28.3](https://www.npmjs.com/package/@typescript-eslint/parser) 
 
 **definitions:**  
 `ts`, `typescript`    
@@ -72,6 +74,8 @@ Examples:
 
 ### [prettier](https://github.com/prettier/eslint-plugin-prettier#readme)  
 
+> dependencies: [prettier@^2.4.1](https://www.npmjs.com/package/prettier), [eslint-plugin-prettier@^4.0.0](https://www.npmjs.com/package/eslint-plugin-prettier), [eslint-config-prettier@^8.3.0](https://www.npmjs.com/package/eslint-config-prettier) 
+
 **definitions:**  
 `prettier`    
   
@@ -104,6 +108,8 @@ Examples:
 
 
 ### [react](https://github.com/yannickcr/eslint-plugin-react#readme)  
+
+> dependencies: [eslint-plugin-react@^7.25.1](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-react-hooks@^4.2.0](https://www.npmjs.com/package/eslint-plugin-react-hooks) 
 
 **definitions:**  
 `react`, `reactjs`    
@@ -142,6 +148,8 @@ Examples:
 
 
 ### [import](https://github.com/import-js/eslint-plugin-import#readme)  
+
+> dependencies: [eslint-plugin-import@^2.24.2](https://www.npmjs.com/package/eslint-plugin-import) 
 
 **definitions:**  
 `import`, `imports`    
@@ -237,6 +245,8 @@ Examples:
 
 ### [effector](https://github.com/effector/eslint-plugin#readme)  
 
+> dependencies: [eslint-plugin-effector@^0.2.0](https://www.npmjs.com/package/eslint-plugin-effector) 
+
 **definitions:**  
 `effector`, `effectorjs`    
   
@@ -258,6 +268,8 @@ Examples:
 
 
 ### [babel](https://www.npmjs.com/package/@babel/eslint-parser)  
+
+> dependencies: [@babel/eslint-parser@^7.15.7](https://www.npmjs.com/package/@babel/eslint-parser) 
 
 **definitions:**  
 `babel`, `babeljs`    
@@ -287,6 +299,8 @@ Examples:
 
 ### [a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme)  
 
+> dependencies: [eslint-plugin-jsx-a11y@^6.4.1](https://www.npmjs.com/package/eslint-plugin-jsx-a11y) 
+
 **definitions:**  
 `a11y`    
   
@@ -309,6 +323,8 @@ Examples:
 
 ### [next](https://nextjs.org/docs/basic-features/eslint)  
 
+> dependencies: [eslint-config-next@^11.1.2](https://www.npmjs.com/package/eslint-config-next) 
+
 **definitions:**  
 `next`, `nextjs`    
   
@@ -328,6 +344,8 @@ Examples:
 
 
 ### [styled-components](https://github.com/tinloof/eslint-plugin-better-styled-components#readme)  
+
+> dependencies: [eslint-plugin-better-styled-components@^1.1.2](https://www.npmjs.com/package/eslint-plugin-better-styled-components) 
 
 **definitions:**  
 `sc`, `styled-components`    
@@ -350,6 +368,8 @@ Examples:
 
 
 ### [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn#readme)  
+
+> dependencies: [eslint-plugin-unicorn@^36.0.0](https://www.npmjs.com/package/eslint-plugin-unicorn) 
 
 **definitions:**  
 `unicorn`    

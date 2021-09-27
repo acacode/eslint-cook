@@ -26,11 +26,11 @@ Examples:
   "plugins": ["dynamic"]
 ```
 ```json
-  "extends": "plugin:dynamic/typescript+import",  
+  "extends": ["plugin:dynamic/typescript+import"],  
   "plugins": ["dynamic"]
 ```
 ```json
-  "extends": "plugin:dynamic/import+prettier",  
+  "extends": ["plugin:dynamic/import+prettier"],  
   "plugins": ["dynamic"]
 ```
 
@@ -39,6 +39,10 @@ Examples:
 <% for (const eslintConfig of it.eslintConfigs) { %>
 
 ### [<%~ eslintConfig.name %>](<%~ eslintConfig.docs %>)  
+
+<% if (eslintConfig.deps.length) { %>
+> dependencies: <%~ eslintConfig.deps.map(dep => `[${dep.name}@${dep.version}](https://www.npmjs.com/package/${dep.name})`).join(', ') %> 
+<% } %>
 
 <% if (eslintConfig.defs.length) { %>
 **definitions:**  
