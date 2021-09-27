@@ -1,6 +1,6 @@
-const { MODULE_CONFIGS } = require("./dist/constants");
 const path = require('path');
 const {PluginManager} = require("live-plugin-manager");
+const ESLINT_DEPS = require('./eslint-deps.json')
 
 const pluginManager = new PluginManager({
   cwd: process.cwd(),
@@ -10,10 +10,10 @@ const pluginManager = new PluginManager({
 
 console.info("installing eslint plugins/configs for usage")
 
-Promise.all(MODULE_CONFIGS.reduce((depsPromises, moduleConfig) =>
+Promise.all(ESLINT_DEPS.reduce((depsPromises, deps) =>
   [
     ...depsPromises,
-    ...moduleConfig.deps.map(dep => pluginManager.installFromNpm(dep.name, dep.version))
+    ...deps.map(dep => pluginManager.installFromNpm(dep.name, dep.version))
   ]
 ))
   .then(() => console.info("succeeded installed eslint plugins/configs for eslint-plugin-dynamic usage"))

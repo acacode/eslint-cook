@@ -28,6 +28,7 @@
     "README.md",
     "index.js",
     "postinstall.js",
+    "eslint-deps.json",
     "dist"
   ],
   "eslintDeps": {},

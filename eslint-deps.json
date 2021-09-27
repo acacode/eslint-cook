@@ -1,0 +1,36 @@
+{
+  "typescript": [
+    { "name": "@typescript-eslint/eslint-plugin", "version": "^4.28.3" },
+    { "name": "@typescript-eslint/parser", "version": "^4.28.3" }
+  ],
+  "prettier": [
+    { "name": "prettier", "version": "^2.4.1" },
+    { "name": "eslint-plugin-prettier", "version": "^4.0.0" },
+    { "name": "eslint-config-prettier", "version": "^8.3.0" }
+  ],
+  "react": [
+    { "name": "eslint-plugin-react", "version": "^7.25.1" },
+    { "name": "eslint-plugin-react-hooks", "version": "^4.2.0" }
+  ],
+  "import": [
+    { "name": "eslint-plugin-import", "version": "^2.24.2" }
+  ],
+  "effector": [
+    { "name": "eslint-plugin-effector", "version": "^0.2.0" }
+  ],
+  "babel": [
+    { "name": "@babel/eslint-parser", "version": "^7.15.7" }
+  ],
+  "a11y": [
+    { "name": "eslint-plugin-jsx-a11y", "version": "^6.4.1" }
+  ],
+  "next": [
+    { "name": "eslint-config-next", "version": "^11.1.2" }
+  ],
+  "styled-components": [
+    { "name": "eslint-plugin-better-styled-components", "version": "^1.1.2" }
+  ],
+  "unicorn": [
+    { "name": "eslint-plugin-unicorn", "version": "^36.0.0" }
+  ]
+}
