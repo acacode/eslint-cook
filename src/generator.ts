@@ -3,17 +3,9 @@ import {MODULE_CONFIGS_VALUES, MODULE_NAMES_DIVIDER, POSSIBLE_MODULE_VALUES} fro
 import {EslintConfig, GeneratorConfig, ModuleName} from "./types";
 import {BASE_CONFIG} from "./eslint/_base_";
 import * as _ from "lodash";
-import {PluginManager} from "live-plugin-manager";
-import {default as sp} from 'synchronized-promise'
-import * as path from "path"
-
 
 const configPicker = new Proxy({} as Record<string, EslintConfig>, {
   async get(target, combination) {
-    const pluginManager = new PluginManager({
-      pluginsPath: path.join(process.cwd(), "node_modules")
-    })
-
     const configuration = { ...BASE_CONFIG }
     const moduleConfigs =
       (_.split(_.toString(combination), MODULE_NAMES_DIVIDER) as ModuleName[])
@@ -33,7 +25,6 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
       .sort((a, b) => a.priority > b.priority ? 1 : -1);
     const moduleNames = moduleConfigs.map(moduleConfig => moduleConfig.name);
 
-
     const generatorConfig: GeneratorConfig = {
       moduleNames,
       moduleConfigs
@@ -42,14 +33,11 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
     const mergeEslintConfig = _.curry(mergeEslintConfigs)(generatorConfig, configuration)
 
     for (const moduleConfig of moduleConfigs) {
-      const { conflicts, config: eslintConfig, relations, deps } = moduleConfig;
+      const { conflicts, config: eslintConfig, relations } = moduleConfig;
 
       if (conflicts.some(moduleNames.includes.bind(moduleNames))) {
         throw new Error(`using "${moduleConfig.name}" module is not allowed with ${conflicts.map(m => `"${m}"`).join(', ')}`)
       }
-
-      // @ts-expect-error
-      _.each(deps, dep => sp(pluginManager.installFromNpm(dep.name, dep.version)))
 
       _.assign(configuration, mergeEslintConfig(eslintConfig))
 

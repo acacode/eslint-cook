@@ -1,8 +1,21 @@
-const { eslintDeps } = require("./package.json");
-const { exec } = require("child_process");
-const path = require('path')
+import {MODULE_CONFIGS} from "./dist/constants";
 
-const pathToInstall = path.resolve(__dirname, '../..')
-const deps = Object.keys(eslintDeps).map(key => `${key}@${eslintDeps[key]}`).join(" ");
+const path = require('path');
+const {PluginManager} = require("live-plugin-manager");
 
-// exec(`npm install --prefix ${pathToInstall} --no-save --quiet --no-audit ${deps}`, { cwd: process.cwd() }, () => {})
+const pluginManager = new PluginManager({
+  cwd: process.cwd(),
+  pluginsPath: path.join(process.cwd(), "node_modules"),
+  npmInstallMode: "useCache"
+})
+
+console.info("installing eslint plugins/configs for usage")
+
+Promise.all(MODULE_CONFIGS.reduce((depsPromises, moduleConfig) =>
+  [
+    ...depsPromises,
+    ...moduleConfig.deps.map(dep => pluginManager.installFromNpm(dep.name, dep.version))
+  ]
+))
+  .then(() => console.info("succeeded installed eslint plugins/configs for eslint-plugin-dynamic usage"))
+  .catch(() => console.error("failed to install eslint plugins/configs"))
