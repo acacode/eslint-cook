@@ -1,14 +1,20 @@
 import {mergeEslintConfigs} from "./utils";
 import {MODULE_CONFIGS_VALUES, MODULE_NAMES_DIVIDER, POSSIBLE_MODULE_VALUES} from "./constants";
-import {EslintConfig, GeneratorConfig, ModuleName} from "./types";
+import {EslintConfig, GeneratorConfig, ModuleConfig, ModuleName} from "./types";
 import {BASE_CONFIG} from "./eslint/_base_";
 import * as _ from "lodash";
 
-const configPicker = new Proxy({} as Record<string, EslintConfig>, {
-  async get(target, combination) {
-    const configuration = { ...BASE_CONFIG }
-    const moduleConfigs =
-      (_.split(_.toString(combination), MODULE_NAMES_DIVIDER) as ModuleName[])
+export class ConfigGenerator {
+  constructor(private moduleNames: ModuleName[]) {}
+
+  static from(rawPath: string): ConfigGenerator {
+    const moduleNames = rawPath.split(' ').filter(Boolean);
+
+    return new ConfigGenerator(moduleNames as ModuleName[]);
+  }
+
+  private get moduleConfigs(): ModuleConfig[] {
+    return this.moduleNames
       .map(rawModuleDef => {
         const moduleDef = _.toLower(rawModuleDef);
         const moduleConfig = MODULE_CONFIGS_VALUES.find(moduleConfig => [moduleConfig.name, ...moduleConfig.defs].includes(moduleDef));
@@ -23,12 +29,19 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
         return moduleConfig;
       })
       .sort((a, b) => a.priority > b.priority ? 1 : -1);
-    const moduleNames = moduleConfigs.map(moduleConfig => moduleConfig.name);
+  }
 
-    const generatorConfig: GeneratorConfig = {
-      moduleNames,
-      moduleConfigs
+  private get generatorConfig(): GeneratorConfig {
+    return {
+      moduleNames: this.moduleNames,
+      moduleConfigs: this.moduleConfigs
     }
+  }
+
+  generateConfig() {
+    const configuration = { ...BASE_CONFIG }
+    const generatorConfig = this.generatorConfig;
+    const { moduleConfigs, moduleNames } = generatorConfig
 
     const mergeEslintConfig = _.curry(mergeEslintConfigs)(generatorConfig, configuration)
 
@@ -50,7 +63,4 @@ const configPicker = new Proxy({} as Record<string, EslintConfig>, {
 
     return configuration;
   }
-});
-
-export const configs = configPicker;
-export const rules = {};
+}

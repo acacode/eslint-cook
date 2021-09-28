@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/generator.ts",
+    "dev": "ts-node src/index.ts",
     "build": "rimraf dist && tsc",
     "prepare-package": "yarn build && yarn docs && yarn syncDeps",
     "docs": "ts-node docs/index.ts",
@@ -52,11 +52,13 @@
     "eslint-plugin-unicorn": "^36.0.0"
   },
   "dependencies": {
+    "commander": "^8.2.0",
     "cosmiconfig": "^7.0.1",
     "install-peerdeps": "^3.0.3",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@types/commander": "^2.12.2",
     "@types/lodash": "^4.14.173",
     "@types/node": "^16.9.6",
     "eta": "^1.12.3",
