@@ -89,7 +89,7 @@ jobs:
           node-version: 14
       - name: package-version
         run: |
-          - npm i
+          - npm ci
           - npm run prepublishOnly
           - node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
       - name: package-version-to-git-tag
