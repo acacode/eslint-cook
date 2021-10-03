@@ -1,4 +1,5 @@
 {
+  "root": true,
   "compileOnSave": false,
   "include": ["src"],
   "compilerOptions": {

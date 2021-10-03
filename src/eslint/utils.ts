@@ -28,7 +28,11 @@ const mergeRules = (generatorConfig: GeneratorConfig, configA: EslintConfig, con
   return rules;
 }
 
-export const mergeEslintConfigs = (generatorConfig: GeneratorConfig, configA: EslintConfig, configB: EslintConfig): EslintConfig => {
+export const mergeEslintConfigs = (
+  generatorConfig: GeneratorConfig,
+  configA: EslintConfig,
+  configB: EslintConfig,
+): EslintConfig => {
   const merged = _.merge(
     {},
     _.omit(configA, ["extends", "plugins", "rules"]),

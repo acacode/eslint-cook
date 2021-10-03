@@ -1,4 +1,4 @@
 
 
-module.exports = require("./dist/generator")
+module.exports = require("./dist")
 

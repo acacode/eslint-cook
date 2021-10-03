@@ -1,17 +1,15 @@
-import {ModuleConfig, ModuleName} from "./types";
-import {BABEL_CONFIG} from "./eslint/babel";
-import {A11Y_CONFIG} from "./eslint/a11y";
-import {NEXT_CONFIG} from "./eslint/next";
-import {REACT_CONFIG} from "./eslint/react";
-import {IMPORT_CONFIG, IMPORT_CONFIG_RELATIONS} from "./eslint/import";
-import {PRETTIER_CONFIG} from "./eslint/prettier";
-import {TYPESCRIPT_CONFIG} from "./eslint/typescript";
-import {EFFECTOR_CONFIG} from "./eslint/effector";
+import {EslintConfig, ModuleConfig, ModuleName} from "./eslint/types";
+import {BABEL_CONFIG} from "./eslint/configs/babel";
+import {A11Y_CONFIG} from "./eslint/configs/a11y";
+import {NEXT_CONFIG} from "./eslint/configs/next";
+import {REACT_CONFIG} from "./eslint/configs/react";
+import {IMPORT_CONFIG, IMPORT_CONFIG_RELATIONS} from "./eslint/configs/import";
+import {PRETTIER_CONFIG} from "./eslint/configs/prettier";
+import {TYPESCRIPT_CONFIG} from "./eslint/configs/typescript";
+import {EFFECTOR_CONFIG} from "./eslint/configs/effector";
 import * as _ from "lodash";
-import {STYLED_COMPONENTS_CONFIG} from "./eslint/styled-components";
-import {UNICORN_CONFIG} from "./eslint/unicorn";
-
-export const MODULE_NAMES_DIVIDER = '+'
+import {STYLED_COMPONENTS_CONFIG} from "./eslint/configs/styled-components";
+import {UNICORN_CONFIG} from "./eslint/configs/unicorn";
 
 export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.TypeScript]: {
@@ -133,5 +131,10 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
 
 export const MODULE_CONFIGS_VALUES = _.values(MODULE_CONFIGS);
 
-export const POSSIBLE_MODULE_VALUES = _.uniq(_.flatten(MODULE_CONFIGS_VALUES.map(moduleConfig => [moduleConfig.name, ...moduleConfig.defs])))
+export const POSSIBLE_MODULE_DEFS = _.uniq(_.flatten(MODULE_CONFIGS_VALUES.map(moduleConfig => [moduleConfig.name, ...moduleConfig.defs])))
 
+export const EMPTY_ESLINT_CONFIG: EslintConfig = {
+  rules: {},
+  plugins: [],
+  extends: [],
+}
