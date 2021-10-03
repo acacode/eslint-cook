@@ -11,7 +11,8 @@ Generate eslint configuration file
 
 Options:
   -m, --modules [names...]  module names
-  -r, --rewrite             rewrite existing eslint config file (default: false)
+  -r, --rewrite             rewrite existing eslint config file (default:
+                            false)
   -o, --output <string>     output path (default: "./.eslintrc")
   -v, --version             output the current version
   -h, --help                display help for command

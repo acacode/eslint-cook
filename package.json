@@ -7,7 +7,7 @@
     "dev": "ts-node src/index.ts -m typescript react import effector prettier",
     "build": "rimraf dist && tsc",
     "prod": "node index.js -m typescript react",
-    "prepare-package": "yarn build && yarn docs",
+    "prepare-package": "npm run build && npm run docs",
     "help": "ts-node src/index.ts --help",
     "docs": "ts-node docs/index.ts",
     "prepublishOnly": "npm run prepare-package"
