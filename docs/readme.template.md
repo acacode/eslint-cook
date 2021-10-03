@@ -14,7 +14,7 @@
 npx eslint-cook -m typescript react -o ./eslintrc 
 ```
 
-Possible module names <%~ it.possibleModuleNames.map(moduleName => `[${moduleName.def}](https://github.com/acacode/${packageName}#${moduleName.name})`).join(', ') %>  
+Possible module names <%~ it.possibleModuleNames.map(moduleName => `[${moduleName.def}](https://github.com/acacode/${it.packageName}#${moduleName.name})`).join(', ') %>  
 
 ## modules
 
