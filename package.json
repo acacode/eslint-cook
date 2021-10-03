@@ -1,6 +1,6 @@
 {
   "name": "eslint-cook",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,10 @@
     "index.js",
     "dist"
   ],
+  "bin": {
+    "eslint-cook": "index.js",
+    "cook-eslint": "index.js"
+  },
   "peerDependencies": {
     "eslint": "^5.0.0 || ^6.0.0 || ^7.0.0"
   },
