@@ -1,7 +1,7 @@
 import {Command} from "commander";
 import * as _ from "lodash"
 import {CLIOption} from "./types";
-import { version, name } from "../../package.json"
+const { version, name } = require('../../package.json')
 
 export class CLI<T> {
   private command: Command;
