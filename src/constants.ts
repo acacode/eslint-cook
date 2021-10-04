@@ -53,7 +53,8 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
     name: ModuleName.Import,
     defs: ["import", "imports"],
     deps: [
-      { name: "eslint-plugin-import", version: "^2.24.2" }
+      { name: "eslint-plugin-import", version: "^2.24.2" },
+      { name: "eslint-import-resolver-alias", version: "^1.1.2" }
     ],
     docs: "https://github.com/import-js/eslint-plugin-import#readme",
     conflicts: [],
