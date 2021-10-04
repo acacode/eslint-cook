@@ -141,7 +141,7 @@ Possible module names [typescript](https://github.com/acacode/eslint-cook#typesc
 
 ### [import](https://github.com/import-js/eslint-plugin-import#readme)  
 
-> dependencies: [eslint-plugin-import@^2.24.2](https://www.npmjs.com/package/eslint-plugin-import) 
+> dependencies: [eslint-plugin-import@^2.24.2](https://www.npmjs.com/package/eslint-plugin-import), [eslint-import-resolver-alias@^1.1.2](https://www.npmjs.com/package/eslint-import-resolver-alias) 
 
 **definitions:**  
 `import`, `imports`    
