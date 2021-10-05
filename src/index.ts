@@ -1,27 +1,37 @@
 import * as _ from "lodash";
 import {bgGreen, black, bold} from "nanocolors";
 import {CLI} from "./cli";
-import {EslintModulesParser} from "./eslint/eslint.modules.parser";
-import {EslintConfigGenerator} from "./eslint/eslint.config.generator";
-import {EslintFileConfigGenerator} from "./eslint/file.config.generator";
+import {GeneratorConfig} from "./eslint/GeneratorConfig";
+import {EslintConfigProcessor} from "./eslint/EslintConfigProcessor";
+import {EslintFileProcessor} from "./eslint/EslintFileProcessor";
 import {CLIParsedOptions} from "./cli/types";
 import {CLI_OPTIONS} from "./cli/constants";
+import * as path from "path";
 
-const main = () => {
-  const cli = new CLI<CLIParsedOptions>(CLI_OPTIONS);
-  const options = cli.options;
-
+const main = async () => {
+  const cli = new CLI<CLIParsedOptions>(
+    CLI_OPTIONS,
+    (options) => ({
+      output: path.resolve(process.cwd(), options.output)
+    })
+  );
   console.info("Start cooking your eslint configuration :)")
 
-  const modulesParser = new EslintModulesParser(options);
-  const configGenerator = new EslintConfigGenerator(options, modulesParser);
-  const fileConfigGenerator = new EslintFileConfigGenerator(options, modulesParser);
+  const config = new GeneratorConfig(cli.options);
+  const configProcessor = new EslintConfigProcessor(config);
+  const fileProcessor = new EslintFileProcessor(config);
 
-  fileConfigGenerator.generate(configGenerator.generate())
+  const [existConfig, existConfigFormat] = await fileProcessor.getConfig(cli.options.output);
+  const generatedConfig = configProcessor.generate();
+  const resultConfig = !cli.options.rewrite && existConfig ?
+    configProcessor.merge(generatedConfig, existConfig) :
+    generatedConfig;
+
+  fileProcessor.createConfig(cli.options.output, resultConfig, existConfigFormat)
     .then(() => {
       console.info(`${bold('succeeded')} patched\\created eslint config! ${bold(`Enjoy!`)}`)
 
-      const deps = _.map(modulesParser.dependencies, dep => `${dep.name}@${dep.version}`).join(" ")
+      const deps = _.map(config.dependencies, dep => `${dep.name}@${dep.version}`).join(" ")
 
       console.log(
         bold("You need to install this dev deps: ") + "\r\n" +

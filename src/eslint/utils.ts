@@ -1,6 +1,7 @@
-import {EslintConfig, EslintConfigRules, EslintConfigRuleValue, GeneratorConfig} from "./types";
+import {EslintConfig, EslintConfigRules} from "./types";
 import * as _ from "lodash";
 import { cosmiconfigSync } from "cosmiconfig";
+import {GeneratorConfig} from "./GeneratorConfig";
 
 const mergeRules = (generatorConfig: GeneratorConfig, configA: EslintConfig, configB: EslintConfig): EslintConfigRules => {
   const ruleNames = _.uniq([..._.keys(configA.rules), ..._.keys(configB.rules)]);
