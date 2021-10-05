@@ -10,7 +10,11 @@ Usage: eslint-cook [options]
 Generate eslint configuration file
 
 Options:
-  -m, --modules [names...]  module names
+  -m, --modules [names...]  eslint module names.
+                            possible values: typescript, ts, prettier, react,
+                            reactjs, import, imports, effector, effectorjs,
+                            babel, babeljs, a11y, next, nextjs,
+                            styled-components, sc, unicorn
   -r, --rewrite             rewrite existing eslint config file (default:
                             false)
   -o, --output <string>     output path (default: "./.eslintrc")

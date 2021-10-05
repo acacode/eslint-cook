@@ -21,12 +21,6 @@ export class CLI<T> {
       .description("Generate eslint configuration file")
   }
 
-  private get rawOptions() {
-    this.command.parse(process.argv);
-
-    return this.command.opts<T>();
-  }
-
   get options(): T {
     const rawOptions = this.rawOptions
 
@@ -38,5 +32,11 @@ export class CLI<T> {
 
   get help() {
     return this.command.helpInformation()
+  }
+
+  private get rawOptions() {
+    this.command.parse(process.argv);
+
+    return this.command.opts<T>();
   }
 }
