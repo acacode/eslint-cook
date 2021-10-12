@@ -10,6 +10,7 @@ import {EFFECTOR_CONFIG} from "./eslint/configs/effector";
 import * as _ from "lodash";
 import {STYLED_COMPONENTS_CONFIG} from "./eslint/configs/styled-components";
 import {UNICORN_CONFIG} from "./eslint/configs/unicorn";
+const { version, name, peerDependencies } = require('../package.json');
 
 export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
   [ModuleName.TypeScript]: {
@@ -53,7 +54,7 @@ export const MODULE_CONFIGS: Record<ModuleName, ModuleConfig> = {
     name: ModuleName.Import,
     defs: ["import", "imports"],
     deps: [
-      { name: "eslint-plugin-import", version: "^2.24.2" },
+      { name: "eslint-plugin-import", version: "^2.25.1" },
       { name: "eslint-import-resolver-alias", version: "^1.1.2" }
     ],
     docs: "https://github.com/import-js/eslint-plugin-import#readme",
@@ -139,3 +140,9 @@ export const EMPTY_ESLINT_CONFIG: EslintConfig = {
   plugins: [],
   extends: [],
 }
+
+export const PACKAGE_CONFIG = {
+  version,
+  name,
+  peerDeps: peerDependencies,
+} as const

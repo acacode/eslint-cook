@@ -1,32 +1,42 @@
 import {Command} from "commander";
 import * as _ from "lodash"
 import {CLIOption} from "./types";
-const { version, name } = require('../../package.json')
+import {PACKAGE_CONFIG} from "../constants";
 
 export class CLI<T> {
   private command: Command;
 
-  constructor(options: CLIOption[]) {
+  constructor(options: CLIOption[], private serializer: (raw: T) => Partial<T> = r => r) {
     this.command = _.reduce(options, (command, option) => {
       return command[option.required ? 'requiredOption' : 'option'](
         option.declaration,
         option.description,
         option.defaultValue
       )
-    }, new Command(name))
+    }, new Command(PACKAGE_CONFIG.name))
 
     this.command
-      .version(version, "-v, --version", "output the current version")
+      .version(PACKAGE_CONFIG.version, "-v, --version", "output the current version")
       .description("Generate eslint configuration file")
+      .showHelpAfterError(true)
+      .showSuggestionAfterError(true)
   }
 
-  get options() {
-    this.command.parse(process.argv);
+  get options(): T {
+    const rawOptions = this.rawOptions
 
-    return this.command.opts<T>()
+    return {
+      ...rawOptions,
+      ...this.serializer(rawOptions),
+    }
   }
 
   get help() {
     return this.command.helpInformation()
+  }
+
+  private get rawOptions() {
+    this.command.parse(process.argv);
+    return this.command.opts<T>();
   }
 }

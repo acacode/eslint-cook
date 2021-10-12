@@ -10,7 +10,11 @@ Usage: eslint-cook [options]
 Generate eslint configuration file
 
 Options:
-  -m, --modules [names...]  module names
+  -m, --modules [names...]  eslint module names.
+                            possible values: typescript, ts, prettier, react,
+                            reactjs, import, imports, effector, effectorjs,
+                            babel, babeljs, a11y, next, nextjs,
+                            styled-components, sc, unicorn
   -r, --rewrite             rewrite existing eslint config file (default:
                             false)
   -o, --output <string>     output path (default: "./.eslintrc")
@@ -141,7 +145,7 @@ Possible module names [typescript](https://github.com/acacode/eslint-cook#typesc
 
 ### [import](https://github.com/import-js/eslint-plugin-import#readme)  
 
-> dependencies: [eslint-plugin-import@^2.24.2](https://www.npmjs.com/package/eslint-plugin-import), [eslint-import-resolver-alias@^1.1.2](https://www.npmjs.com/package/eslint-import-resolver-alias) 
+> dependencies: [eslint-plugin-import@^2.25.1](https://www.npmjs.com/package/eslint-plugin-import), [eslint-import-resolver-alias@^1.1.2](https://www.npmjs.com/package/eslint-import-resolver-alias) 
 
 **definitions:**  
 `import`, `imports`    

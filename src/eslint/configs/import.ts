@@ -1,6 +1,5 @@
 import {EslintConfig, EslintConfigRelations, ModuleName} from "../types";
 
-
 export const IMPORT_CONFIG: EslintConfig = {
   plugins: [
     "import",

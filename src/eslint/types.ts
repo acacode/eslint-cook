@@ -1,3 +1,4 @@
+import {GeneratorConfig} from "./GeneratorConfig";
 
 export const enum ModuleName {
   Babel = "babel",
@@ -15,11 +16,6 @@ export const enum ModuleName {
 export type EslintConfigRuleValue = "error" | "warn" | "off" | 0 | 1 | 2
 
 export type EslintConfigRules = Record<string, DynamicRulePatcher | EslintConfigRuleValue | [EslintConfigRuleValue, Record<string, unknown>]>
-
-export type GeneratorConfig = {
-  moduleNames: ModuleName[];
-  moduleConfigs: ModuleConfig[];
-}
 
 export interface EslintConfig {
   [key: string]: unknown;
