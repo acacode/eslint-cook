@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import {black, bold, bgWhite} from "nanocolors";
+import {black, bold} from "nanocolors";
 import {CLI} from "./cli";
 import {GeneratorConfig} from "./eslint/GeneratorConfig";
 import {EslintConfigProcessor} from "./eslint/EslintConfigProcessor";
@@ -38,8 +38,8 @@ const main = async () => {
 
       console.log(
         bold("You need to install this dev deps: ") + "\r\n" +
-        "  npm:  " + black(bold(bgWhite("npm i -D " + allDeps))) + "\r\n" +
-        "  yarn: " + black(bold(bgWhite("yarn add -D " + allDeps)))
+        "  npm:  " + black(bold("npm i -D " + allDeps)) + "\r\n" +
+        "  yarn: " + black(bold("yarn add -D " + allDeps))
       )
     })
     .catch(e => {
