@@ -1,8 +1,7 @@
 import {Command} from "commander";
 import * as _ from "lodash"
 import {CLIOption} from "./types";
-
-const { version, name } = require('../../package.json')
+import {PACKAGE_CONFIG} from "../constants";
 
 export class CLI<T> {
   private command: Command;
@@ -14,11 +13,13 @@ export class CLI<T> {
         option.description,
         option.defaultValue
       )
-    }, new Command(name))
+    }, new Command(PACKAGE_CONFIG.name))
 
     this.command
-      .version(version, "-v, --version", "output the current version")
+      .version(PACKAGE_CONFIG.version, "-v, --version", "output the current version")
       .description("Generate eslint configuration file")
+      .showHelpAfterError(true)
+      .showSuggestionAfterError(true)
   }
 
   get options(): T {
@@ -36,7 +37,6 @@ export class CLI<T> {
 
   private get rawOptions() {
     this.command.parse(process.argv);
-
     return this.command.opts<T>();
   }
 }

@@ -7,6 +7,7 @@ import {EslintFileProcessor} from "./eslint/EslintFileProcessor";
 import {CLIParsedOptions} from "./cli/types";
 import {CLI_OPTIONS} from "./cli/constants";
 import * as path from "path";
+import {PACKAGE_CONFIG} from "./constants";
 
 const main = async () => {
   const cli = new CLI<CLIParsedOptions>(
@@ -31,12 +32,14 @@ const main = async () => {
     .then(() => {
       console.info(`${bold('succeeded')} patched\\created eslint config! ${bold(`Enjoy!`)}`)
 
-      const deps = _.map(config.dependencies, dep => `${dep.name}@${dep.version}`).join(" ")
+      const peerDeps = _.map(PACKAGE_CONFIG.peerDeps, (version, name) => `${name}@${version}`)
+      const deps = _.map(config.dependencies, dep => `${dep.name}@${dep.version}`)
+      const allDeps = [...peerDeps, ...deps].join(' ')
 
       console.log(
         bold("You need to install this dev deps: ") + "\r\n" +
-        "  npm:  " + black(bold(bgGreen("npm i -D " + deps))) + "\r\n" +
-        "  yarn: " + black(bold(bgGreen("yarn add -D " + deps)))
+        "  npm:  " + black(bold(bgGreen("npm i -D " + allDeps))) + "\r\n" +
+        "  yarn: " + black(bold(bgGreen("yarn add -D " + allDeps)))
       )
     })
     .catch(e => {
